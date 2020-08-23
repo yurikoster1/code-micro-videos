@@ -1,29 +1,69 @@
-DELETE http://localhost:8000/api/v1/categories/1
+GET http://{{host}}/api/v1/categories
 Accept: application/json
 
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.global.set("uuid", response.body['data'][0]['id']);
+        client.log(client.global.get('uuid'));
+    });
+%}
 ###
-PUT http://localhost:8000/api/v1/categories/1
+GET http://{{host}}/api/v1/categories/{{uuid}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.global.set("name_initial", response.body['data']['name']);
+    });
+%}
+
+###
+PUT http://{{host}}/api/v1/categories/{{uuid}}
 Content-Type: application/json
 
 {
-    "name": "catergory 12"
+    "name": "{{name_initial}} {{$randomInt}}"
 }
-
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        var name_initial = client.global.get("name_initial");
+        client.assert(name_initial !== response.body['data']['name'], "Response status is not 200");
+    });
+%}
 
 ###
-GET http://localhost:8000/api/v1/categories/1
+DELETE http://{{host}}/api/v1/categories/{{uuid}}
 Accept: application/json
 
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+    });
+%}
 ###
-POST http://localhost:8000/api/v1/categories
+GET http://{{host}}/api/v1/categories/{{uuid}}
+Accept: application/json
+
+> {%
+    client.test("Request uuid not found successfully", function() {
+        client.assert(response.status === 404, "Response status is not 404");
+    });
+%}
+###
+
+POST http://{{host}}/api/v1/categories
 Content-Type: application/json
 
 {
-    "name": "catergory 122"
+    "name": "Category {{$randomInt}}"
 }
-
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Response status is not 201");
+    });
+%}
 ###
-GET http://localhost:8000/api/v1/categories
-Accept: application/json
 
-###
