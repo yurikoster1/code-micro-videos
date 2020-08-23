@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\v1\CategoryStoreRequest;
 use App\Http\Requests\Category\v1\CategoryUpdateRequest;
 use App\Http\Requests\Category\Interfaces\CategoryStoreRequestInterface;
 use App\Http\Requests\Category\Interfaces\CategoryUpdateRequestInterface;
-use App\Models\Category;
 use App\Repository\Interfaces\CategoryRepositoryInterface;
 use App\Services\Interfaces\CategoryServiceInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -22,8 +21,8 @@ class CategoryController extends Controller
     {
         $this->categoryRepository = $categoryRepository;
         $this->categoryService = $categoryService;
-        \App::bind(CategoryStoreRequestInterface::class,CategoryStoreRequest::class);
-        \App::bind(CategoryUpdateRequestInterface::class,CategoryUpdateRequest::class);
+        App::bind(CategoryStoreRequestInterface::class,CategoryStoreRequest::class);
+        App::bind(CategoryUpdateRequestInterface::class,CategoryUpdateRequest::class);
     }
     /**
      * Display a listing of the resource.
