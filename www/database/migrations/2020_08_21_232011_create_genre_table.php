@@ -14,7 +14,7 @@ class CreateGenreTable extends Migration
     public function up()
     {
         Schema::create('genres', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->boolean('is_active')->default(true);
             $table->softDeletes();
