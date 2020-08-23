@@ -19,4 +19,5 @@ Route::middleware('auth:api')->name('user')->get('/user', function (Request $req
 });
 
 Route::resource('categories', 'CategoryController')->except(['create', 'edit']);
+Route::resource('genres', 'GenreController')->except(['create', 'edit']);
 
