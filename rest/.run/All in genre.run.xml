@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All in genre" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" environment="dev" path="$PROJECT_DIR$/rest/genre.http">
+    <method v="2" />
+  </configuration>
+</component>
