@@ -3,7 +3,6 @@
 
 namespace App\Http\Requests\Genre\Interfaces;
 
-
 interface GenreStoreRequestInterface
 {
     public function rules() : array;

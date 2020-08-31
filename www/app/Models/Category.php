@@ -2,22 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Base\BaseModel;
+use App\Traits\Models\Activatable;
 use App\Traits\Models\UsesUuid;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Category extends BaseModel
 {
-    use SoftDeletes, UsesUuid;
+    use SoftDeletes, UsesUuid, Activatable;
 
     protected $fillable = ['name',
         'description',
         'is_active'
     ];
-
-    public function getIsActiveAttribute($value)
-    {
-        return $value == 1 ? true : false;
-    }
-
 }

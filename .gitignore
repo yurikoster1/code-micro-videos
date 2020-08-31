@@ -120,3 +120,11 @@ modules.xml
 www/.phpstorm.meta.php
 
 www/_ide_helper.php
+
+www/.env.testing
+
+.php_cs.cache
+
+*.log
+
+www/infection.json.dist

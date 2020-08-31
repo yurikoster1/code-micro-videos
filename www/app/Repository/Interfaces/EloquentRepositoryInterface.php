@@ -3,7 +3,6 @@
 
 namespace App\Repository\Interfaces;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 /**

@@ -16,12 +16,12 @@ class GenreController extends Controller
 {
     private $genreRepository;
     private $genreService;
-    public function __construct( GenreRepositoryInterface $genreRepository, GenreServiceInterface $genreService)
+    public function __construct(GenreRepositoryInterface $genreRepository, GenreServiceInterface $genreService)
     {
         $this->genreRepository = $genreRepository;
         $this->genreService = $genreService;
-        App::bind(GenreStoreRequestInterface::class,GenreStoreRequest::class);
-        App::bind(GenreUpdateRequestInterface::class,GenreUpdateRequest::class);
+        App::bind(GenreStoreRequestInterface::class, GenreStoreRequest::class);
+        App::bind(GenreUpdateRequestInterface::class, GenreUpdateRequest::class);
     }
 
     /**
@@ -57,7 +57,8 @@ class GenreController extends Controller
         try {
             $genre = $this->genreService->getById($genre);
         } catch (ModelNotFoundException $e) {
-            return response()->error('Model not Found', 404);;
+            return response()->error('Model not Found', 404);
+            ;
         }
         return  response()->success($genre);
     }
@@ -75,7 +76,8 @@ class GenreController extends Controller
         try {
             $genre = $this->genreService->update($genre, $request->validated());
         } catch (ModelNotFoundException $e) {
-            return response()->error('Model not Found', 404);;
+            return response()->error('Model not Found', 404);
+            ;
         }
         return response()->success($genre);
     }
@@ -91,7 +93,8 @@ class GenreController extends Controller
         try {
             $this->genreService->delete($genre);
         } catch (ModelNotFoundException $e) {
-            return response()->error('Model not Found', 404);;
+            return response()->error('Model not Found', 404);
+            ;
         }
         return response()->noContent();
     }

@@ -8,6 +8,7 @@ use App\Services\Interfaces\CategoryServiceInterface;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 use Throwable;
 
@@ -37,16 +38,14 @@ class CategoryService implements CategoryServiceInterface
 
             $category = new CategoryResource($category);
             return $category;
-
         } catch (Exception $e) {
             throw $e;
         } catch (Throwable $t) {
             throw $t;
         }
-        return false;
     }
 
-    public function all(): Collection
+    public function all(): AnonymousResourceCollection
     {
         return CategoryResource::collection($this->categoryRepository->all());
     }
@@ -55,16 +54,16 @@ class CategoryService implements CategoryServiceInterface
      * @param $id
      * @return Model
      */
-    public function getById($id): Model
+    public function getById($id): CategoryResource
     {
         try {
             $model = $this->categoryRepository->find($id);
+            return new CategoryResource($model);
         } catch (Exception $e) {
             throw $e;
         } catch (Throwable $t) {
             throw $t;
         }
-        return $model;
     }
 
     /**
@@ -94,11 +93,21 @@ class CategoryService implements CategoryServiceInterface
     public function delete($id): bool
     {
         try {
-           return $this->categoryRepository->delete($id);
+            return $this->categoryRepository->delete($id);
         } catch (Exception $e) {
             throw $e;
         } catch (Throwable $t) {
             throw $t;
         }
+    }
+
+    /**
+     * @param array $attributes
+     *
+     * @return Model
+     */
+    public function getTrashed(): AnonymousResourceCollection
+    {
+        return CategoryResource::collection($this->categoryRepository->getTrashed());
     }
 }

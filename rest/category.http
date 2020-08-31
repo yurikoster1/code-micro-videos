@@ -30,7 +30,7 @@ Content-Type: application/json
     client.test("Request executed successfully", function() {
         client.assert(response.status === 200, "Response status is not 200");
         var name_initial = client.global.get("name_initial");
-        client.assert(name_initial !== response.body['data']['name'], "Response status is not 200");
+        client.assert(name_initial !== response.body['data']['name'], "Name has not changed");
     });
 %}
 
@@ -58,11 +58,13 @@ POST http://{{host}}/api/v1/categories
 Content-Type: application/json
 
 {
-    "name": "Category {{$randomInt}}"
+    "name": "Category {{$randomInt}}",
+    "is_active": false
 }
 > {%
     client.test("Request executed successfully", function() {
         client.assert(response.status === 201, "Response status is not 201");
+        client.assert(false === response.body['data']['is_active'], "is_active is not false");
     });
 %}
 ###

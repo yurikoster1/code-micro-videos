@@ -1,4 +1,4 @@
-FROM php:7.3.6-fpm-alpine3.9 as base
+FROM php:7.4.9-fpm-alpine3.12 as base
 
 RUN apk add --no-cache shadow openssl bash mysql-client nodejs npm git
 RUN docker-php-ext-install pdo pdo_mysql
@@ -15,6 +15,8 @@ RUN rm -rf /var/www/html && ln -s public html
 
 USER www-data
 
+RUN composer global require hirak/prestissimo
+
 EXPOSE 9000
 
 FROM base as dev
@@ -24,7 +26,25 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
+RUN pecl channel-update pecl.php.net
+RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
+  && pecl install xdebug \
+  && docker-php-ext-enable xdebug \
+  && apk del pcre-dev ${PHPIZE_DEPS}
+
 ADD .docker/app/.env /templates/.env
+ADD .docker/app/.env.testing /templates/.env.testing
 ADD .docker/app/entrypoint.sh /entrypoint.sh
 
+RUN set -ex && apk --no-cache add sudo
+RUN adduser www-data wheel && sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
+
 USER www-data
+
+RUN composer global require infection/infection
+RUN composer global require "squizlabs/php_codesniffer=*"
+RUN composer global require friendsofphp/php-cs-fixer
+
+COPY ./.docker/app/ini/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+#RUN export PATH=~/.composer/vendor/bin:$PATH

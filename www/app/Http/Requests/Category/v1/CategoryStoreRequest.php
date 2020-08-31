@@ -37,6 +37,5 @@ class CategoryStoreRequest extends CategoryBaseRequest implements CategoryStoreR
     {
         $filters = [];
         return array_merge(parent::filters(), $filters);
-
     }
 }
