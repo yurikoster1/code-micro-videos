@@ -58,20 +58,20 @@ class Handler extends ExceptionHandler
             if (config('app.debug')) {
                 $data['trace'] = $exception->getTrace();
             }
-            if(method_exists($exception,'getStatusCode')){
+            if (method_exists($exception, 'getStatusCode')) {
                 $status = $exception->getStatusCode();
-            }else{
+            } else {
                 $status = 400;
-                if($exception instanceof AccessDeniedHttpException){
+                if ($exception instanceof AccessDeniedHttpException) {
                     $status = 403;
                 }
             }
-            if($exception instanceof ValidationException){
+            if ($exception instanceof ValidationException) {
                 $erros = $exception->errors();
                 $data = [];
             }
             $message = $exception->getMessage();
-            if($exception instanceof MethodNotAllowedHttpException || $exception instanceof NotFoundHttpException){
+            if ($exception instanceof MethodNotAllowedHttpException || $exception instanceof NotFoundHttpException) {
                 $message = 'Page Not Found';
                 $status = 404;
             }

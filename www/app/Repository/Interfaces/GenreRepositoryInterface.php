@@ -9,5 +9,4 @@ use Illuminate\Support\Collection;
 interface GenreRepositoryInterface extends EloquentRepositoryInterface
 {
     public function all(): Collection;
-
 }

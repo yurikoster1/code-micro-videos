@@ -8,9 +8,5 @@ use Illuminate\Support\Collection;
 
 interface CategoryRepositoryInterface extends EloquentRepositoryInterface
 {
-
     public function all(): Collection;
-
-
-
 }

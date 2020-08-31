@@ -7,10 +7,8 @@ use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use Waavi\Sanitizer\Filters\Cast;
 
-
-class CastsFilter extends  Cast
+class CastsFilter extends Cast
 {
-
     public function apply($value, $options = [])
     {
         $type = isset($options[0]) ? $options[0] : null;
@@ -26,7 +24,7 @@ class CastsFilter extends  Cast
                 return (string)$value;
             case 'bool':
             case 'boolean':
-                return  ($value === null || $value === '') ? null :  filter_var($value, FILTER_VALIDATE_BOOLEAN,FILTER_NULL_ON_FAILURE);
+                return  ($value === null || $value === '') ? null :  filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
             case 'object':
                 return is_array($value) ? (object)$value : json_decode($value, false);
             case 'array':

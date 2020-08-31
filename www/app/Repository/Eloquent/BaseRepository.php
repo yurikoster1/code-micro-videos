@@ -35,13 +35,23 @@ class BaseRepository implements EloquentRepositoryInterface
     }
 
     /**
+     * @param array $attributes
+     *
+     * @return Model
+     */
+    public function getTrashed(): Collection
+    {
+        return $this->model->withTrashed()->get();
+    }
+
+    /**
      * @param $id
      * @return Model
      */
     public function find($id): ?Model
     {
         $model = $this->model->find($id);
-        if(!$model){
+        if (!$model) {
             throw  new ModelNotFoundException($this->model);
         }
         return $model;
@@ -71,7 +81,6 @@ class BaseRepository implements EloquentRepositoryInterface
             if ($model !== null) {
                 return $model->update($data);
             }
-
         }
         throw new ModelNotFoundException($this->model);
     }

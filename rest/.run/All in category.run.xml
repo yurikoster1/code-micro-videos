@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All in category" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" path="$PROJECT_DIR$/rest/category.http">
+  <configuration default="false" name="All in category" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" environment="dev" path="$PROJECT_DIR$/rest/category.http">
     <method v="2" />
   </configuration>
 </component>

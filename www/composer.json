@@ -23,7 +23,10 @@
         "laracasts/generators": "^1.1",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "phpmd/phpmd": "@stable",
+        "phpunit/phpunit": "^8.0",
+        "sebastian/phpcpd": "^5.0",
+        "sensiolabs/security-checker": "^6.0"
     },
     "config": {
         "optimize-autoloader": true,

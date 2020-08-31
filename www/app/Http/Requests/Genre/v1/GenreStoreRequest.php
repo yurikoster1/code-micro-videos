@@ -36,6 +36,5 @@ class GenreStoreRequest extends GenreBaseRequest implements GenreStoreRequestInt
     {
         $filters = [];
         return array_merge(parent::filters(), $filters);
-
     }
 }

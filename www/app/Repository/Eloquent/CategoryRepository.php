@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
-    public  $rules = [
+    public $rules = [
         ''
     ];
     /**

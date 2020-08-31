@@ -31,13 +31,13 @@ class ResponseMacroServiceProvider extends ServiceProvider
             if (!empty($message)) {
                 $response['message'] = $message;
             }
-            if($status == null){
+            if ($status == null) {
                 $method = request()->getMethod();
-                switch ($method){
+                switch ($method) {
                     case 'PUT':
                         $status = 200;
                         break;
-                    case 'POST' :
+                    case 'POST':
                         $status = 201;
                         break;
                     default:
@@ -50,7 +50,6 @@ class ResponseMacroServiceProvider extends ServiceProvider
         });
 
         Response::macro('error', function ($message, $status = 400, $erros = [], $data = []) {
-
             $response['success'] = false;
             $response['message'] = $message;
             if (!empty($erros)) {

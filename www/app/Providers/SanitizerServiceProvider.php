@@ -19,9 +19,10 @@ class SanitizerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        app()->afterResolving(Sanitizer::class, function($s, $app) {
-            foreach($this->sanitizers as $key => $value)
+        app()->afterResolving(Sanitizer::class, function ($s, $app) {
+            foreach ($this->sanitizers as $key => $value) {
                 $s->extend($key, $value);
+            }
         });
     }
 

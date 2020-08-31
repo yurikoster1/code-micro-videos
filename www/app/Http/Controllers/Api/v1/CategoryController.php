@@ -21,8 +21,8 @@ class CategoryController extends Controller
     {
         $this->categoryRepository = $categoryRepository;
         $this->categoryService = $categoryService;
-        App::bind(CategoryStoreRequestInterface::class,CategoryStoreRequest::class);
-        App::bind(CategoryUpdateRequestInterface::class,CategoryUpdateRequest::class);
+        App::bind(CategoryStoreRequestInterface::class, CategoryStoreRequest::class);
+        App::bind(CategoryUpdateRequestInterface::class, CategoryUpdateRequest::class);
     }
     /**
      * Display a listing of the resource.
@@ -54,10 +54,11 @@ class CategoryController extends Controller
      */
     public function show($category)
     {
-         try {
-        $category = $this->categoryService->getById($category);
+        try {
+            $category = $this->categoryService->getById($category);
         } catch (ModelNotFoundException $e) {
-             return response()->error('Model not Found', 404);;
+            return response()->error('Model not Found', 404);
+            ;
         }
         return  response()->success($category);
     }
@@ -73,9 +74,10 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequestInterface $request, $category)
     {
         try {
-        $category = $this->categoryService->update($category, $request->validated());
+            $category = $this->categoryService->update($category, $request->validated());
         } catch (ModelNotFoundException $e) {
-             return response()->error('Model not Found', 404);;
+            return response()->error('Model not Found', 404);
+            ;
         }
         return response()->success($category);
     }
@@ -89,9 +91,10 @@ class CategoryController extends Controller
     public function destroy($category)
     {
         try {
-             $this->categoryService->delete($category);
+            $this->categoryService->delete($category);
         } catch (ModelNotFoundException $e) {
-            return response()->error('Model not Found', 404);;
+            return response()->error('Model not Found', 404);
+            ;
         }
         return response()->noContent();
     }
