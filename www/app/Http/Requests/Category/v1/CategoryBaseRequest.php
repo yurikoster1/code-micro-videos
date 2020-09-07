@@ -6,6 +6,8 @@ use App\Http\Requests\BaseRequest;
 
 class CategoryBaseRequest extends BaseRequest
 {
+    public const NAME_MAX_LENGTH = 255;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +26,8 @@ class CategoryBaseRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:255'],
+            'name' => ['required', 'max:'.$this::NAME_MAX_LENGTH],
+            'description' => ['nullable'],
             'is_active' => 'boolean'
         ];
     }

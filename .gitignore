@@ -128,3 +128,9 @@ www/.env.testing
 *.log
 
 www/infection.json.dist
+
+www/.infection/
+
+www/build/coverage/
+
+www/public/info.php

@@ -11,6 +11,10 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
+/**
+ * @group service
+ * @group genre
+ */
 class GenreServiceTest extends TestCase
 {
     use DatabaseMigrations;

@@ -7,7 +7,10 @@ use App\Traits\Models\Activatable;
 use App\Traits\Models\UsesUuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PHPUnit\Framework\TestCase;
-
+/**
+ * @group model
+ * @group genre
+ */
 class GenreTest extends TestCase
 {
     /**

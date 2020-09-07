@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Tests\TestCase;
-
+/**
+ * @group repository
+ * @group genre
+ */
 class GenreRepositoryTest extends TestCase
 {
     use DatabaseMigrations;

@@ -9,6 +9,10 @@ use App\Repository\Interfaces\GenreRepositoryInterface;
 use App\Repository\Interfaces\EloquentRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group repository
+ * @group genre
+ */
 class GenreRepositoryTest extends TestCase
 {
     /**
