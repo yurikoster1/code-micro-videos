@@ -8,6 +8,10 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
+/**
+ * @group model
+ * @group category
+ */
 class CatergoryTest extends TestCase
 {
     use DatabaseMigrations;

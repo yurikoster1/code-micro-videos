@@ -14,11 +14,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GenreController extends Controller
 {
-    private $genreRepository;
     private $genreService;
-    public function __construct(GenreRepositoryInterface $genreRepository, GenreServiceInterface $genreService)
+    public function __construct( GenreServiceInterface $genreService)
     {
-        $this->genreRepository = $genreRepository;
         $this->genreService = $genreService;
         App::bind(GenreStoreRequestInterface::class, GenreStoreRequest::class);
         App::bind(GenreUpdateRequestInterface::class, GenreUpdateRequest::class);
@@ -31,7 +29,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        return response()->success($this->genreRepository->all());
+        return response()->success($this->genreService->all());
     }
 
     /**
@@ -77,7 +75,6 @@ class GenreController extends Controller
             $genre = $this->genreService->update($genre, $request->validated());
         } catch (ModelNotFoundException $e) {
             return response()->error('Model not Found', 404);
-            ;
         }
         return response()->success($genre);
     }

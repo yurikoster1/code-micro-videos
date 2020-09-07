@@ -39,12 +39,15 @@ ADD .docker/app/entrypoint.sh /entrypoint.sh
 RUN set -ex && apk --no-cache add sudo
 RUN adduser www-data wheel && sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
 
+COPY ./.docker/app/ini/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 USER www-data
+
+RUN sudo -E docker-php-ext-enable xdebug
 
 RUN composer global require infection/infection
 RUN composer global require "squizlabs/php_codesniffer=*"
 RUN composer global require friendsofphp/php-cs-fixer
 
-COPY ./.docker/app/ini/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 #RUN export PATH=~/.composer/vendor/bin:$PATH

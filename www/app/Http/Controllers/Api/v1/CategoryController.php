@@ -11,15 +11,14 @@ use App\Http\Requests\Category\Interfaces\CategoryUpdateRequestInterface;
 use App\Repository\Interfaces\CategoryRepositoryInterface;
 use App\Services\Interfaces\CategoryServiceInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
-    private $categoryRepository;
     private $categoryService;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository, CategoryServiceInterface  $categoryService)
+    public function __construct( CategoryServiceInterface  $categoryService)
     {
-        $this->categoryRepository = $categoryRepository;
         $this->categoryService = $categoryService;
         App::bind(CategoryStoreRequestInterface::class, CategoryStoreRequest::class);
         App::bind(CategoryUpdateRequestInterface::class, CategoryUpdateRequest::class);
@@ -31,7 +30,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return response()->success($this->categoryRepository->all());
+        return response()->success($this->categoryService->all());
     }
 
     /**
@@ -77,7 +76,6 @@ class CategoryController extends Controller
             $category = $this->categoryService->update($category, $request->validated());
         } catch (ModelNotFoundException $e) {
             return response()->error('Model not Found', 404);
-            ;
         }
         return response()->success($category);
     }

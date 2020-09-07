@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class CategoryService implements CategoryServiceInterface
@@ -35,7 +36,6 @@ class CategoryService implements CategoryServiceInterface
     {
         try {
             $category = $this->categoryRepository->create($attributes);
-
             $category = new CategoryResource($category);
             return $category;
         } catch (Exception $e) {

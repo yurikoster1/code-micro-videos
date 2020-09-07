@@ -9,7 +9,10 @@ use App\Repository\Interfaces\CategoryRepositoryInterface;
 use App\Repository\Interfaces\EloquentRepositoryInterface;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use PHPUnit\Framework\TestCase;
-
+/**
+ * @group repository
+ * @group category
+ */
 class CategoryRepositoryTest extends TestCase
 {
 
