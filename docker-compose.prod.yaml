@@ -6,18 +6,16 @@ services:
         build:
           dockerfile: .docker/app/Dockerfile
           context: .
-          target: dev
+          target:  builder-prod
         container_name: micro-videos-app
-        image: code-micro-videos_app:dev
-        entrypoint: dockerize -template /templates/.env:.env -template /templates/.env.testing:.env.testing -wait tcp://db:3306 -timeout 40s /entrypoint.sh
+        image: code-micro-videos_app:prod
+        entrypoint: dockerize -wait tcp://db:3306 -timeout 40s /entrypoint.sh
         environment:
-            - _DB_HOST=db
-            - _DB_DATABASE=code_micro_videos
-            - _TEST_DB_DATABASE=code_micro_videos_test
-            - _DB_USERNAME=root
-            - _DB_PASSWORD=root
-        volumes:
-            - ./www:/var/www
+            - DB_HOST=db
+            - DB_DATABASE=code_micro_videos
+            - TEST_DB_DATABASE=code_micro_videos_test
+            - DB_USERNAME=root
+            - DB_PASSWORD=root
         networks:
             - app-network
         depends_on:
