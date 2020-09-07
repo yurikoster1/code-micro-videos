@@ -34,7 +34,6 @@ class GenreService implements GenreServiceInterface
     {
         try {
             $category = $this->genreRepository->create($attributes);
-
             $category = new GenreResource($category);
             return $category;
         } catch (Exception $e) {

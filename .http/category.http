@@ -58,6 +58,20 @@ POST http://{{host}}/api/v1/categories
 Content-Type: application/json
 
 {
+    "name": "Category {{$randomInt}}"
+}
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Response status is not 201");
+        client.assert(true === response.body['data']['is_active'], "is_active is not false");
+    });
+%}
+###
+
+POST http://{{host}}/api/v1/categories
+Content-Type: application/json
+
+{
     "name": "Category {{$randomInt}}",
     "is_active": false
 }

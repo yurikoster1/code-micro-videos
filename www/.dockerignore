@@ -1,0 +1,11 @@
+/vendor/
+/.env
+/.env.testing
+/.php_cs.cache
+/.phpstorm.meta.php
+/.phpunit.result.cache
+/_ide_helper.php
+/.infection/
+/history.log
+/infection.json.dist
+/build/

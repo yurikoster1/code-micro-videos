@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class GenreResource extends JsonResource
 {
@@ -18,8 +19,8 @@ class GenreResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'is_active' => $this->is_active,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'created_at' => (new Carbon($this->created_at))->format('Y-m-d h:i:s'),
+            'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d h:i:s')
         ];
     }
 }

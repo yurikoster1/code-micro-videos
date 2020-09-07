@@ -1,0 +1,10 @@
+name: CI
+on: ['pull_request']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker-compose -f docker-compose-ci.yaml up -d
+      - run: docker exec micro-videos-app dockerize -timeout=300s -wait=http://localhost:3000
+      - run: docker exec micro-videos-app vendor/bin/phpunit

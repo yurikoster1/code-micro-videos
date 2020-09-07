@@ -7,7 +7,10 @@ use App\Repository\Eloquent\GenreRepository;
 use App\Services\GenreService;
 use App\Services\Interfaces\GenreServiceInterface;
 use PHPUnit\Framework\TestCase;
-
+/**
+ * @group service
+ * @group genre
+ */
 class GenreServiceTest extends TestCase
 {
     /**

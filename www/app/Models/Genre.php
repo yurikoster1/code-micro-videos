@@ -14,8 +14,4 @@ class Genre extends BaseModel
     protected $fillable = [
         'name'
     ];
-    public function getIsActiveAttribute($value)
-    {
-        return $value == 1 ? true : false;
-    }
 }

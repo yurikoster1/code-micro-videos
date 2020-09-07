@@ -7,7 +7,10 @@ use App\Repository\Eloquent\CategoryRepository;
 use App\Services\CategoryService;
 use App\Services\Interfaces\CategoryServiceInterface;
 use PHPUnit\Framework\TestCase;
-
+/**
+ * @group service
+ * @group category
+ */
 class CategoryServiceTest extends TestCase
 {
     /**

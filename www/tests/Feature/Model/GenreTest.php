@@ -10,6 +10,10 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
+/**
+ * @group model
+ * @group genre
+ */
 class GenreTest extends TestCase
 {
     use DatabaseMigrations;

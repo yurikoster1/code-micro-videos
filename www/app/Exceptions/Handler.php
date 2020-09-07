@@ -69,13 +69,14 @@ class Handler extends ExceptionHandler
             if ($exception instanceof ValidationException) {
                 $erros = $exception->errors();
                 $data = [];
+                $status = 422;
             }
             $message = $exception->getMessage();
             if ($exception instanceof MethodNotAllowedHttpException || $exception instanceof NotFoundHttpException) {
                 $message = 'Page Not Found';
                 $status = 404;
             }
-            //return response()->error($message,$status, $erros ,$data);
+            return response()->error($message,$status, $erros ,$data);
         }
         return parent::render($request, $exception);
     }
