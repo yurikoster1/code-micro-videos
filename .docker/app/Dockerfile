@@ -88,8 +88,8 @@ RUN cp /var/www/.env.example /var/www/.env
 FROM builder-ci as ci
 USER www-data
 RUN  cp /var/www/.env.example /var/www/.env.testing
-RUN php artisan key:generate
 RUN composer install
+RUN php artisan key:generate
 
 FROM builder-ci as builder-prod
 USER www-data
